@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<script>
+    /*属于浅拷贝*/
+    /*1.数组的合并*/
+    const a = [1,2]
+    const b = [3,4]
+    const c = a.concat(b)
+    console.log(c)
+    let d = [...a,...b]
+    /*2.数组的克隆*/
+    let m = [12,123,14]
+    let v = [...m];
+    console.log(m)
+    /*3.将伪数组转为真正的数组*/
+    const divs = document.querySelectorAll('div');
+    var divArr = [...divs]
+    console.log(divArr)
+</script>
+</body>
+</html>

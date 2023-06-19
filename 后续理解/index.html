@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<script>
+			var coverSupport = 'CSS' in window && typeof CSS.supports === 'function' && (CSS.supports('top: env(a)') ||
+				CSS.supports('top: constant(a)'))
+			document.write(
+				'<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' +
+				(coverSupport ? ', viewport-fit=cover' : '') + '" />')
+		</script>
+		<title></title>
+		<!--preload-links-->
+		<!--app-context-->
+	</head>
+	<body>
+		<div id="app">
+			<!--app-html-->
+		</div>
+		<script type="module" src="/main.js"></script>
+	</body>
+	<script>
+		// fn.testCall(this, ...arguments)
+		Function.prototype.testCall=function(scope){
+			// this.call(scope,[...arguments].slice(1))\
+			//call传参，是传参数列表不是数组
+			let attr='test-call-'+Math.random()
+			scope[attr]=this
+			scope[attr](...([...arguments].slice(1)))
+			delete scope[attr]
+			// console.log()
+		}
+		Function.prototype.testApply=function(scope){
+			// this.call(scope,[...arguments].slice(1))\
+			//call传参，是传参数列表不是数组
+			let attr='test-call-'+Math.random()
+			scope[attr]=this
+			scope[attr](([...arguments].slice(1)))
+			delete scope[attr]
+			// console.log()
+		}
+		Function.prototype.testBind=function(scope){
+			// this.call(scope,[...arguments].slice(1))\
+			//call传参，是传参数列表不是数组
+			let attr='test-call-'+Math.random()
+			let _this=this
+			scope[attr]=this
+			let args=[...arguments].slice(1)
+			return function(){
+				scope[attr](...(args))
+				delete scope[attr]
+			}
+			
+			// fn()
+			//需要delete attr
+			// console.log()
+		}
+		let user = {
+			age: 20,
+			name: 'test',
+			obj: {
+				a: 1,
+				b: 2
+			},
+			arr: [1, 2, 3, 4, 5, 6]
+		}
+		let el = document.getElementById('app')
+
+		function observe({
+			el,
+			data,
+			key
+		}) {
+
+			el.addEventListener('keyup', function(event) {
+				data[key] = event.target.value
+			})
+			Object.keys(data).forEach((attr, index) => {
+
+				defineProperty(data, attr)
+
+			})
+
+
+			function defineProperty(data, attr) {
+				let bValue = data[attr];
+				if (typeof bValue === 'object') {
+					new observe({
+						el,
+						data: bValue,
+						key
+					})
+				}
+				Object.defineProperty(data, attr, {
+					// 	enumerable: true,
+					get() {
+						console.log('获取');
+						return bValue;
+					},
+					set(newValue) {
+						Watcher.publish(newValue, attr)
+						// setValue(newValue, attr === key)
+					},
+
+				})
+			}
+
+		
+
+
+			let Watcher = ((window) => {
+				this.listeners = []
+				this.publish = function() {
+
+					this.listeners.forEach((fn, index) => {
+						// fn.call(this, ...arguments)
+						fn.testBind(this, ...arguments)()
+						
+						// fn(...arguments)
+						// fn.apply(this,[...arguments]) 
+						// fn.bind(this,...arguments)() //bind和call的最大区别，他不自执行
+					})
+				}
+				return this
+			})(window)
+			
+			
+			//这种写法更值钱
+			Watcher.listeners.push(function(newValue, attr) {
+				console.log('listern:', newValue)
+					console.log(this)
+				bValue = newValue;
+			})
+			
+			Watcher.listeners.push(function(newValue, attr) {
+				console.log(this)
+				if (key === attr) {
+					if (el.value) {
+						el.value = newValue
+					} else {
+						el.innerText = newValue
+					};
+				}
+			})
+				
+			Watcher.publish(data[key],key)
+
+		}
+
+
+		new observe({
+			data: user,
+			el: el,
+			key: 'age'
+		})
+
+		console.log(user)
+
+
+		// var app = new Vue({
+		//   el: '#app',
+		//   data: {
+		//     message: 'Hello Vue!',
+		// 	a:'123'
+		//   }
+		// })
+	</script>
+
+</html>
