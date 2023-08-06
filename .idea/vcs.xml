@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/everyweekStudy" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/everyweekStudy/frontEndLearning" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/everyweekStudy/hongs-study-notes" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/frontEndLearning" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/hongs-study-notes" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/javascript_daily_practise" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/master-cloud-music" vcs="Git" />
+  </component>
+</project>

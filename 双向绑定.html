@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="input">
+<script>
+    let data = {};
+    let input = document.getElementById('input');
+    Object.defineProperty(data,'text',{
+        set(value){
+            input.value = value;
+            this.value = value;
+        }
+    });
+    input.onChange = function (e){
+        data.text = e.target.value;
+        console.log('data',data.text)
+    }
+    console.log(data)
+
+
+    async function async1() {
+        console.log('async1 start')
+        await async2()
+        console.log('async1 end')}
+    async function async2() {
+        console.log('async2')}
+    console.log('scriptstart')
+    setTimeout(function()
+    {
+        console.log('setTimeout')}, 0)
+    async1()
+    new Promise(function(resolve)
+    1) {
+        console.log('promise1')
+        resolve()}).then(function()
+    {
+        console.log('promise2')})console.log('script end')
+</script>
+</body>
+</html>

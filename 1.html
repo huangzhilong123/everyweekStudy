@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .content{
+      background: #F8F9FA;
+      width: 400px;
+      height: 300px;
+      margin: 100px auto;
+      position: relative;
+    }
+    .content-page{
+      background: #FFFFFF;
+      width: 20rem;
+      height: 12rem;
+      margin: 0 auto;
+      position: relative;
+      top: 50px;
+      border-radius: 10px;
+      border: 1px solid lightgrey;
+      display: flex;
+      flex-direction: column;
+    }
+    .content .content-page .bt-line{
+      width: 100%;
+      height: 33.3%;
+      border-bottom: 1px solid lightgrey;
+      display: flex;
+      line-height: 4rem;
+    }
+    .content .content-page div span{
+      width: 10px;
+      height: 10px;
+    }
+    .content-page3{
+      border: none !important;
+      float: right;
+      color: white;
+      font-size: 14px;
+    }
+
+    .close {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      right: 20px;
+      top: 10px;
+    }
+
+    .close::before,
+    .close::after {
+      position: absolute;
+      content: ' ';
+      background-color: lightgrey;
+      /*left: 20px;*/
+
+      width: 2px;
+      height: 20px;
+    }
+
+    .close::before {
+      transform: rotate(45deg);
+    }
+
+    .close::after {
+      transform: rotate(-45deg);
+    }
+    .button1{
+      height: 30px;
+      width: 60px;
+      line-height:30px;
+      text-align: center;
+      background: #6E757C;
+      position: relative;
+      top: 20px;
+      left: 100px;
+      border-radius: 6px;
+    }
+    .button2{
+      height: 30px;
+      width: 120px;
+      line-height:30px;
+      text-align: center;
+      background: #306EF4;
+      position: relative;
+      top: 20px;
+      left: 120px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+<div class="content">
+  <div class="content-page">
+    <div class="content-page1 bt-line">
+      <span></span>
+      Modal title
+      <span class="close"></span>
+    </div>
+    <div class="content-page2 bt-line">
+      <span></span>
+      Modal body text goes here</div>
+    <div class="content-page3 bt-line">
+      <div class="button1">Close</div>
+      <div class="button2">Save Change</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
