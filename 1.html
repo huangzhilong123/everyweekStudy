@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
 </head>
-<body>
-$END$
+<style>
+    #box1{
+        width:100px ;
+        height: 100px;
+        background: red;
+        position: absolute;
+    }
+</style>
+<body style="height: 1000px">
+<div id="box1">
+</div>
 </body>
+<script>
+    window.onload = function (){
+        var box1 = document.getElementById("box1");
+        document.onmousemove = function (event){
+            var left = event.pageX;
+            var top = event.pageY;
+            box1.style.left = left + 'px';
+            box1.style.top = top + 'px';
+        }
+    }
+</script>
 </html>

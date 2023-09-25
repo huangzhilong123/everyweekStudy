@@ -22,4 +22,15 @@ fn.test1()
 fn.test2()
 console.log(fn.toString())
 
-fn.test3()
+// fn.test3()
+/*
+* 1.函数的显式原型指向的对象默认是object实例对象（但是Object不满足）*/
+console.log(Fn.prototype instanceof Object)
+console.log(Object.prototype instanceof  Object)
+console.log(Function.prototype instanceof Object)
+/*
+* 2.所有函数都是Function的实例（包含Function）*/
+console.log(Function.__proto__ === Function.prototype)
+/*
+* Object的原型对象是原型链尽头*/
+console.log(Object.prototype.__proto__)
